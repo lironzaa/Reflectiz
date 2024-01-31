@@ -1,0 +1,10 @@
+<div class="color-picker-container">
+  <mat-label class="text-center">{{placeholder}}</mat-label>
+  <input (colorPickerChange)="onColorPickerChange($event)" [(colorPicker)]="color" [style.background]="color" />
+</div>
+
+<app-error-input
+  [formField]="formField"
+  [formSubmitted]="formSubmitted"
+  [errors]="errors">
+</app-error-input>

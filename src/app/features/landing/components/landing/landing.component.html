@@ -1,1 +1,103 @@
-<p>landing works!</p>
+<div>
+  <div class="d-flex-center my-4">
+    <span class="main-text">Order Car Form</span>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="p-4 p-md-5 border rounded-3 bg-light">
+    <div class="form-row d-flex-center mb-4">
+      <app-text-input
+        [formField]="loginForm.get('fullName')"
+        [customFormControlName]="'fullName'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Full Name'"
+        [errors]="landingFormErrors.fullName"
+      />
+      <app-select-input
+        [formField]="loginForm.get('gender')"
+        [customFormControlName]="'gender'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Gender'"
+        [errors]="landingFormErrors.gender"
+        [options]="genderOptions"
+      />
+    </div>
+    <div class="form-row d-flex-center mb-4">
+      <app-text-input
+        [formField]="loginForm.get('email')"
+        [customFormControlName]="'email'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Email'"
+        [errors]="landingFormErrors.email"
+        [type]="'email'"
+      />
+      <app-date-input
+        [formField]="loginForm.get('birthDate')"
+        [customFormControlName]="'birthDate'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Birth Date'"
+        [errors]="landingFormErrors.birthDate"
+      />
+    </div>
+    <div class="form-row d-flex-center mb-4">
+      <app-text-input
+        [formField]="loginForm.get('address')"
+        [customFormControlName]="'address'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Address'"
+        [errors]="landingFormErrors.address"
+      />
+      <app-text-input
+        [formField]="loginForm.get('city')"
+        [customFormControlName]="'city'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'City'"
+        [errors]="landingFormErrors.city"
+      />
+      <app-text-input
+        [formField]="loginForm.get('country')"
+        [customFormControlName]="'country'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Country'"
+        [errors]="landingFormErrors.country"
+      />
+    </div>
+    <div class="form-row d-flex-center mb-4">
+      <app-select-input
+        [formField]="loginForm.get('hobbies')"
+        [customFormControlName]="'hobbies'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Hobbies'"
+        [errors]="landingFormErrors.hobbies"
+        [options]="hobbiesOptions"
+        [isMultipleChoice]="true"
+      />
+      <app-color-picker
+        [formField]="loginForm.get('favoriteColor')"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Select car color'"
+        [errors]="landingFormErrors.favoriteColor"
+        (onColorPicked)="onColorPicked($event)"
+      />
+    </div>
+    <div class="form-row d-flex-center mb-4">
+      <app-radio-input
+        [formField]="loginForm.get('seatsAmount')"
+        [customFormControlName]="'seatsAmount'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Seats Amount'"
+        [errors]="landingFormErrors.seatsAmount"
+        [options]="seatsAmountOptions"
+      />
+      <app-radio-input
+        [formField]="loginForm.get('motorType')"
+        [customFormControlName]="'motorType'"
+        [formSubmitted]="formSubmitted"
+        [placeholder]="'Motor Type'"
+        [errors]="landingFormErrors.motorType"
+        [options]="motorTypeOptions"
+      />
+    </div>
+    <div class="d-flex-center">
+      <button mat-raised-button color="primary">Order your dream car</button>
+    </div>
+  </form>
+</div>

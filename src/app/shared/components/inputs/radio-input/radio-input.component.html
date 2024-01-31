@@ -1,0 +1,13 @@
+<mat-radio-group class="radio-group-container" [formControlName]="customFormControlName">
+  <mat-label class="text-center">{{placeholder}}</mat-label>
+  <div>
+    <mat-radio-button *ngFor="let option of options" [value]="option">{{option}}</mat-radio-button>
+  </div>
+</mat-radio-group>
+
+
+<app-error-input *ngIf="errors.length"
+                 [formField]="formField"
+                 [formSubmitted]="formSubmitted"
+                 [errors]="errors">
+</app-error-input>

@@ -1,0 +1,12 @@
+<mat-form-field>
+  <mat-label>{{placeholder}}</mat-label>
+  <mat-select [formControlName]="customFormControlName" [multiple]="isMultipleChoice">
+    <mat-option *ngFor="let option of options; trackBy: trackByOptionName" [value]="option">{{option}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<app-error-input *ngIf="errors.length"
+                 [formField]="formField"
+                 [formSubmitted]="formSubmitted"
+                 [errors]="errors">
+</app-error-input>
