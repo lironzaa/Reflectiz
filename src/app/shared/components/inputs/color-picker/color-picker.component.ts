@@ -6,7 +6,7 @@ import { InputError } from "../../../interfaces/input-error";
 @Component({
   selector: 'app-color-picker',
   templateUrl: './color-picker.component.html',
-  styleUrls: ['./color-picker.component.scss'],
+  styleUrls: [ './color-picker.component.scss' ],
 })
 export class ColorPickerComponent {
   @Input() formField?: AbstractControl | null;

@@ -1,0 +1,21 @@
+.bar-graph {
+  height: 400px;
+  width: 600px;
+}
+
+.pie-graph {
+  height: 600px;
+  width: 600px;
+}
+
+@media screen and (max-width: 700px) {
+  .bar-graph {
+    height: 300px;
+    width: 500px;
+  }
+
+  .pie-graph {
+    height: 400px;
+    width: 400px;
+  }
+}

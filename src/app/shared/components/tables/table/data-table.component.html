@@ -1,0 +1,27 @@
+<table mat-table [dataSource]="rowsData" class="mat-elevation-z8">
+  <ng-container *ngFor="let column of columns" [matColumnDef]="column.title">
+    <th mat-header-cell *matHeaderCellDef> {{ column.title | title }} </th>
+    <td mat-cell *matCellDef="let element" [ngSwitch]="column.columnType">
+      <ng-container *ngSwitchCase="DataTableColumnTypes.Date">
+        {{element[column.title] | date:'dd/MM/yyyy' }}
+      </ng-container>
+      <ng-container *ngSwitchCase="DataTableColumnTypes.Array">
+        {{element[column.title].join(', ')  }}
+      </ng-container>
+      <div *ngSwitchCase="DataTableColumnTypes.Color"
+           [ngStyle]="{'background-color': element[column.title], 'color' : 'white'}">
+        {{element[column.title] }}
+      </div>
+      <ng-container *ngSwitchDefault>
+        {{ element[column.title] }}
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsNamesArr"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsNamesArr;"></tr>
+</table>
+
+<div class="d-flex-center my-4" *ngIf="!rowsData.length">
+  <p>No data to display</p>
+</div>

@@ -30,6 +30,10 @@ body {
   font-size: 20px;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 // Texts
 
 .text-red {
@@ -84,10 +88,37 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.my-5 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .mb-4 {
   margin-bottom: 1.5rem;
 }
 
+.m-3 {
+  margin: 1rem;
+}
+
+// Material
+
 mat-form-field {
   width: 300px;
+}
+
+@media screen and (max-width: 700px) {
+  mat-form-field {
+    width: 250px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  mat-form-field {
+    width: 200px;
+  }
+}
+
+.mat-mdc-tab-body-content {
+  overflow-y: hidden !important;
 }

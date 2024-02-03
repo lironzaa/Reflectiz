@@ -1,0 +1,31 @@
+<div class="{{type}}-graph">
+  <p class="text-center main-text bold">{{graphLabel}}</p>
+  <ng-container [ngSwitch]="type" *ngIf="labels.length>0">
+    <ng-container *ngSwitchCase="'bar'">
+      <canvas
+        baseChart
+        class="chart"
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [type]="barChartType"
+      >
+      </canvas>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'pie'">
+      <canvas
+        baseChart
+        class="chart"
+        [data]="pieChartData"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [type]="pieChartType"
+      >
+      </canvas>
+    </ng-container>
+  </ng-container>
+  <div *ngIf="labels.length===0" class="d-flex-center">
+    <p>No data to display</p>
+  </div>
+</div>

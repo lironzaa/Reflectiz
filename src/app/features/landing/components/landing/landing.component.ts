@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
 import { EMAIL_REGEX } from "../../../../shared/regex/regex";
 import { LandingFormErrorsData } from "../../data/landing-form-errors-data";
-import { LandingService } from "../../services/landing.service";
 import { ToastService } from "../../../../shared/services/toast.service";
+import { CarService } from "../../../../shared/services/car.service";
+import { GenderOptions } from "../../../../shared/data/genderOptions";
+import { MotorTypeOptions } from "../../../../shared/data/motorTypeOptions";
+import { HobbiesOptions } from "../../../../shared/data/hobbiesOptions";
+import { SeatsAmountOptions } from "../../../../shared/data/seatsAmountOptions";
+import { StatisticsService } from "../../../../shared/services/statistics.service";
 
 @Component({
   selector: 'app-landing',
@@ -15,17 +21,19 @@ export class LandingComponent implements OnInit {
   loginForm!: FormGroup;
   formSubmitted = false;
   landingFormErrors = LandingFormErrorsData;
-  genderOptions = [ 'Male', 'Female' ];
-  hobbiesOptions = [ 'Reading', 'Painting', 'Gardening', 'Cooking', 'Photography', 'Hiking', 'Playing a Musical Instrument', 'Bird Watching', 'Chess', 'Yoga' ];
-  seatsAmountOptions = [ 2, 3, 4, 5, 6, 7 ];
-  motorTypeOptions = [ "Electric", "Fuel" ];
+  genderOptions = GenderOptions;
+  hobbiesOptions = HobbiesOptions;
+  seatsAmountOptions = SeatsAmountOptions;
+  motorTypeOptions = MotorTypeOptions;
 
-  constructor(private fb: FormBuilder, private landingService: LandingService,
-              private toastService: ToastService) {
+  constructor(private fb: FormBuilder, private carService: CarService,
+              private toastService: ToastService, private router: Router,
+              private statisticsService: StatisticsService) {
   }
 
   ngOnInit(): void {
     this.initLandingForm();
+    this.statisticsService.incrementTotalVisitors();
   }
 
   initLandingForm(): void {
@@ -51,9 +59,12 @@ export class LandingComponent implements OnInit {
   onSubmit(): void {
     this.formSubmitted = true;
     if (this.loginForm.valid) {
-      this.landingService.orderCar(this.loginForm.value);
+      this.carService.orderCar(this.loginForm.value);
+      this.statisticsService.incrementFormSubmissions();
       this.toastService.showMessage('Your request was sent, soon you will receive a mail the perfect match for you!');
-      this.loginForm.reset();
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([ '/' ])
     }
   }
 }
